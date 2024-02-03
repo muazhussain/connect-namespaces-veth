@@ -1,7 +1,10 @@
 #!/bin/bash
 
 # Constants
-VM='ubuntuvm'
+VM_NAME='ubuntuvm'
+VM_CPU_COUNT='2'
+VM_MEMORY='2G'
+VM_DISK='10G'
 NS1='london'
 NS2='newyork'
 VETH1='red'
@@ -9,11 +12,11 @@ VETH2='green'
 IP_NS1='10.0.0.1/24'
 IP_NS2='10.0.0.2/24'
 
-# Launch Virtual Machines
-multipass launch -c 2 -m 2G -d 10G -n "$VM"
+# Launch Virtual Machine
+multipass launch -c "$VM_CPU_COUNT" -m "$VM_MEMORY" -d "$VM_DISK" -n "$VM_NAME"
 
-# Access Virtual Machines
-multipass shell "$VM"
+# Access Virtual Machine
+multipass shell "$VM_NAME"
 
 # Create Namespaces
 sudo ip netns add "$NS1"
